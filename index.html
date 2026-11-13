@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#174b39">
+<title>কবিতা ভুবন</title>
+<style>
+:root{--green:#174b39;--green2:#28684f;--gold:#e3bd66;--cream:#fffaf0;--ink:#20372e;--muted:#6b7d72;--line:#dce7dd}
+*{box-sizing:border-box}body{margin:0;background:#f2f6f0;color:var(--ink);font-family:system-ui,"Noto Sans Bengali",sans-serif}
+button,input,textarea,select{font:inherit}button{border:0;border-radius:12px;padding:11px 16px;background:var(--green2);color:white;font-weight:700;cursor:pointer}
+button.light{background:#e7f0e8;color:var(--green)}button.red{background:#a94343}
+header{background:var(--green);color:#fff;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-weight:800;font-size:20px}.brand small{display:block;font-size:11px;font-weight:400;color:#d9eadf}
+nav{display:flex;gap:7px;flex-wrap:wrap}nav button{background:#ffffff1c;padding:8px 11px;font-size:14px}
+main{max-width:920px;margin:0 auto;padding:18px 14px 45px}
+.cover{min-height:370px;border-radius:24px;padding:35px 22px;text-align:center;color:white;background:radial-gradient(circle at 50% 18%,#3f8060 0,#225b43 48%,#123d2d 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 12px 30px #153d2c20;position:relative;overflow:hidden}
+.cover:before,.cover:after{content:"❧";position:absolute;color:#ffffff20;font-size:110px}.cover:before{left:12px;top:5px}.cover:after{right:12px;bottom:0;transform:rotate(180deg)}
+.book{font-size:50px;margin-bottom:8px}.cover h1{font-size:clamp(32px,7vw,48px);margin:0;color:#fff}.cover .tag{color:#e7d7a7;font-size:17px;margin:10px 0 22px}.cover p{max-width:520px;line-height:1.8;color:#e6f0e8;margin:0 0 22px}.cover button{background:var(--gold);color:#263c2e;padding:13px 23px}
+.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:17px;margin:15px 0;box-shadow:0 5px 18px #173c2809}
+h2{font-size:20px;margin:0 0 13px;color:var(--green)}
+label{display:block;font-weight:700;margin:11px 0 5px}input,textarea,select{width:100%;padding:11px 12px;border:1px solid #cbd9ce;border-radius:11px;background:#fff;color:var(--ink)}
+textarea{min-height:165px;resize:vertical;line-height:1.8}.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.small{font-size:12px;color:var(--muted);line-height:1.6}
+.poem{border:1px solid var(--line);border-radius:14px;padding:14px;margin:11px 0;background:#fff}.poem h3{margin:0 0 5px;color:var(--green);font-size:19px}.meta{font-size:13px;color:var(--muted);margin-bottom:10px}.poemtext{white-space:pre-wrap;line-height:1.9}.empty{text-align:center;padding:25px;color:var(--muted)}
+.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:15px}.stat div{background:#ffffff16;border:1px solid #ffffff24;border-radius:13px;padding:12px}.stat b{display:block;font-size:23px;color:#f1d78e}.stat span{font-size:12px;color:#e1eee5}
+.hidden{display:none!important}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
+@media(max-width:560px){header{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}.cover{min-height:350px;padding:28px 16px}.stat{gap:6px}.stat div{padding:9px 5px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand">📖 কবিতা ভুবন <small>শব্দের পাতায় মনের ঠিকানা</small></div>
+ <nav>
+  <button onclick="showPage('home')">হোম</button>
+  <button onclick="showPage('write')">কবিতা লিখুন</button>
+  <button onclick="showPage('library')">আমার কবিতা</button>
+ </nav>
+</header>
+<main>
+<section id="homePage">
+ <div class="cover">
+  <div class="book">📖</div>
+  <h1>কবিতা ভুবন</h1>
+  <div class="tag">শব্দে শব্দে গড়ে উঠুক অনুভূতির জগৎ</div>
+  <p>আপনার ভাবনা, অনুভূতি ও সৃষ্টিকে যত্নে সংরক্ষণ করুন। লিখুন, পড়ুন, সম্পাদনা করুন—নিজের কবিতার জগৎ সাজিয়ে তুলুন।</p>
+  <button onclick="showPage('write')">✍️ নতুন কবিতা লিখুন</button>
+  <div class="stat">
+   <div><b id="countPoems">০</b><span>সংরক্ষিত কবিতা</span></div>
+   <div><b id="countCats">৫</b><span>বিভাগ</span></div>
+   <div><b>∞</b><span>সৃষ্টির পরিসর</span></div>
+  </div>
+ </div>
+ <div class="panel">
+  <h2>🌿 কবিতা ভুবনে স্বাগতম</h2>
+  <p>এখানে আপনার কবিতাগুলো শিরোনাম, কবির নাম ও বিভাগ অনুযায়ী গুছিয়ে রাখতে পারবেন।</p>
+  <div class="row"><button onclick="showPage('library')">সংরক্ষিত কবিতা দেখুন</button><button class="light" onclick="showPage('categories')">বিভাগ পরিচালনা</button></div>
+ </div>
+</section>
+
+<section id="writePage" class="hidden">
+ <div class="panel">
+  <h2 id="formHeading">নতুন কবিতা লিখুন</h2>
+  <label for="title">কবিতার শিরোনাম</label><input id="title" placeholder="কবিতার নাম লিখুন">
+  <div class="grid">
+   <div><label for="author">কবির নাম</label><input id="author" placeholder="কবির নাম লিখুন"></div>
+   <div><label for="category">বিভাগ</label><select id="category"></select></div>
+  </div>
+  <label for="body">কবিতা</label><textarea id="body" placeholder="এখানে আপনার কবিতা লিখুন..."></textarea>
+  <div class="row"><button id="saveBtn">কবিতা সংরক্ষণ</button><button class="light" id="cancelBtn" hidden>বাতিল</button><button class="light" onclick="showPage('library')">কবিতার তালিকা</button></div>
+  <p class="small">নোট: কবিতা এই ব্রাউজারের এই ডিভাইসে সংরক্ষিত থাকে। ব্রাউজারের ডেটা মুছে ফেললে কবিতা হারাতে পারে—তাই আলাদা কপি রাখুন।</p>
+ </div>
+</section>
+
+<section id="libraryPage" class="hidden">
+ <div class="panel">
+  <h2>📚 আমার কবিতাসমূহ</h2>
+  <div class="grid"><input id="search" placeholder="শিরোনাম, কবি বা কবিতা খুঁজুন"><select id="filter"></select></div>
+  <div id="poems"></div>
+ </div>
+</section>
+
+<section id="categoriesPage" class="hidden">
+ <div class="panel">
+  <h2>বিভাগ পরিচালনা</h2>
+  <div class="grid"><input id="newCategory" placeholder="নতুন বিভাগের নাম"><button id="addCategory">বিভাগ যোগ করুন</button></div>
+  <div id="categoryList"></div>
+  <p class="small">যে বিভাগে কবিতা আছে, সেটি মুছতে হলে আগে কবিতাগুলো অন্য বিভাগে সরিয়ে নিন।</p>
+ </div>
+</section>
+</main>
+<footer>কবিতা ভুবন · আপনার সৃষ্টির নিজস্ব ঠিকানা</footer>
+<script>
+const $=id=>document.getElementById(id);
+const defaultCats=["প্রেমের কবিতা","প্রকৃতি","দেশাত্মবোধক","ইসলামিক","অন্যান্য"];
+let cats=JSON.parse(localStorage.getItem("kobitavubon_cats")||"null")||defaultCats;
+let poems=JSON.parse(localStorage.getItem("kobitavubon_poems")||"[]");
+let editing=null;
+function persist(){localStorage.setItem("kobitavubon_cats",JSON.stringify(cats));localStorage.setItem("kobitavubon_poems",JSON.stringify(poems));}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function showPage(page){
+ ["home","write","library","categories"].forEach(p=>$(p+"Page").classList.toggle("hidden",p!==page));
+ if(page==="library")render();if(page==="categories")renderCats();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function fillCats(){
+ $("category").innerHTML=cats.map(c=>`<option>${esc(c)}</option>`).join("");
+ $("filter").innerHTML='<option value="">সব বিভাগ</option>'+cats.map(c=>`<option>${esc(c)}</option>`).join("");
+ $("countCats").textContent=bn(cats.length);
+}
+function bn(n){return Number(n).toLocaleString("bn-BD");}
+function resetForm(){editing=null;$("title").value="";$("author").value="";$("body").value="";$("formHeading").textContent="নতুন কবিতা লিখুন";$("saveBtn").textContent="কবিতা সংরক্ষণ";$("cancelBtn").hidden=true;}
+function render(){
+ const q=$("search").value.trim().toLowerCase(),f=$("filter").value;
+ const shown=poems.filter(p=>(!f||p.category===f)&&(!q||(p.title+" "+p.author+" "+p.body).toLowerCase().includes(q)));
+ $("poems").innerHTML=shown.length?shown.map(p=>`<article class="poem"><h3>${esc(p.title)}</h3><div class="meta">${esc(p.author||"কবি উল্লেখ নেই")} · ${esc(p.category)} · ${esc(p.date)}</div><div class="poemtext">${esc(p.body)}</div><div class="row"><button class="light" data-edit="${p.id}">সম্পাদনা</button><button class="red" data-delete="${p.id}">ডিলিট</button></div></article>`).join(""):'<div class="empty">এখনো কোনো কবিতা নেই। প্রথম কবিতাটি লিখুন।</div>';
+ $("countPoems").textContent=bn(poems.length);
+}
+function renderCats(){
+ $("categoryList").innerHTML=cats.map(c=>`<div class="row" style="justify-content:space-between;border-bottom:1px solid var(--line);padding:8px 0"><span>${esc(c)}</span><button class="red" data-catdel="${esc(c)}">মুছুন</button></div>`).join("");
+}
+$("saveBtn").onclick=()=>{
+ const title=$("title").value.trim(),body=$("body").value.trim();
+ if(!title||!body){alert("কবিতার শিরোনাম ও কবিতা লিখুন।");return;}
+ const item={id:editing||Date.now(),title,author:$("author").value.trim(),category:$("category").value,body,date:new Date().toLocaleDateString("bn-BD")};
+ if(editing)poems=poems.map(p=>p.id===editing?item:p);else poems.unshift(item);
+ persist();resetForm();render();showPage("library");
+};
+$("cancelBtn").onclick=resetForm;
+$("addCategory").onclick=()=>{const name=$("newCategory").value.trim();if(!name)return alert("বিভাগের নাম লিখুন।");if(cats.includes(name))return alert("এই বিভাগটি আগে থেকেই আছে।");cats.push(name);$("newCategory").value="";persist();fillCats();renderCats();};
+$("poems").onclick=e=>{
+ const id=e.target.dataset.edit,del=e.target.dataset.delete;
+ if(id){const p=poems.find(x=>x.id==id);if(!p)return;editing=p.id;$("title").value=p.title;$("author").value=p.author;$("body").value=p.body;$("category").value=p.category;$("formHeading").textContent="কবিতা সম্পাদনা";$("saveBtn").textContent="পরিবর্তন সংরক্ষণ";$("cancelBtn").hidden=false;showPage("write");}
+ if(del&&confirm("এই কবিতাটি ডিলিট করবেন?")){poems=poems.filter(p=>p.id!=del);persist();render();}
+};
+$("categoryList").onclick=e=>{const name=e.target.dataset.catdel;if(!name)return;if(poems.some(p=>p.category===name))return alert("এই বিভাগে কবিতা আছে। আগে কবিতাগুলো অন্য বিভাগে সরান।");if(cats.length===1)return alert("অন্তত একটি বিভাগ রাখতে হবে।");if(confirm("বিভাগটি মুছবেন?")){cats=cats.filter(c=>c!==name);persist();fillCats();renderCats();}};
+$("search").oninput=render;$("filter").onchange=render;
+fillCats();render();renderCats();
+</script>
+</body></html>

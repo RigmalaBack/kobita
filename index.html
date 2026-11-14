@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#174b39">
+<meta name="theme-color" content="#174b39">\n<link rel="manifest" href="manifest.webmanifest">\n<meta name="mobile-web-app-capable" content="yes">\n<meta name="apple-mobile-web-app-capable" content="yes">\n<link rel="apple-touch-icon" href="icons/icon-192.png">
 <title>কবিতা ভুবন</title>
 <style>
 :root{--green:#174b39;--green2:#28684f;--gold:#e3bd66;--cream:#fffaf0;--ink:#20372e;--muted:#6b7d72;--line:#dce7dd}
@@ -136,5 +136,12 @@ $("poems").onclick=e=>{
 $("categoryList").onclick=e=>{const name=e.target.dataset.catdel;if(!name)return;if(poems.some(p=>p.category===name))return alert("এই বিভাগে কবিতা আছে। আগে কবিতাগুলো অন্য বিভাগে সরান।");if(cats.length===1)return alert("অন্তত একটি বিভাগ রাখতে হবে।");if(confirm("বিভাগটি মুছবেন?")){cats=cats.filter(c=>c!==name);persist();fillCats();renderCats();}};
 $("search").oninput=render;$("filter").onchange=render;
 fillCats();render();renderCats();
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("./sw.js").catch(function (e) { console.log(e); });
+  });
+}
 </script>
 </body></html>
